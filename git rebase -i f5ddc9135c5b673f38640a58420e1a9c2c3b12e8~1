@@ -1,0 +1,17 @@
+[33mcommit f9c599115bf0c88bd40b0ea4c014efbf32dc791c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Diego Sarabia <datesgamesdeveloper@gmail.com>
+Date:   Tue Jul 15 12:32:24 2025 -0600
+
+    Limpieza del historial: eliminar secrets
+
+[33mcommit 7a0a24c5beab8d99d56b1159431b80433c96eb9f[m
+Author: Diego Sarabia <datesgamesdeveloper@gmail.com>
+Date:   Mon Jul 14 23:56:42 2025 -0600
+
+    eliminar application.yml
+
+[33mcommit f5ddc9135c5b673f38640a58420e1a9c2c3b12e8[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Diego Sarabia <datesgamesdeveloper@gmail.com>
+Date:   Sat Jul 12 14:40:13 2025 -0600
+
+    Primer commit
