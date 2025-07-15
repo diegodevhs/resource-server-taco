@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,8 @@ public class IngredientController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('SCOPE_readIngredients')")
-    public List<Ingredient> findAll(){
+    public List<Ingredient> findAll(Authentication authentication){
+        System.out.println("Auth principal: " + authentication.getPrincipal());
         return ingredientRepository.findAll();
     }
 

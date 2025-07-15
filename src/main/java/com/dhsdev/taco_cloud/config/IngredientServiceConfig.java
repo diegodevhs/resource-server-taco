@@ -19,20 +19,22 @@ public class IngredientServiceConfig {
     @RequestScope
     public IngredientService ingredientService(
             OAuth2AuthorizedClientService clientService) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        String accessToken = null;
-
-        if (authentication.getClass()
-                .isAssignableFrom(OAuth2AuthenticationToken.class)) {
-            OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+        if (authentication instanceof OAuth2AuthenticationToken oauthToken) {
             String clientRegistrationId = oauthToken.getAuthorizedClientRegistrationId();
-            if (clientRegistrationId.equals("taco-admin-client")) {
+            if ("taco-admin-client".equals(clientRegistrationId)) {
                 OAuth2AuthorizedClient client = clientService.loadAuthorizedClient(
                         clientRegistrationId, oauthToken.getName());
-                accessToken = client.getAccessToken().getTokenValue();
+                if (client != null && client.getAccessToken() != null) {
+                    String accessToken = client.getAccessToken().getTokenValue();
+                    return new RestIngredientService(accessToken);
+                }
             }
         }
-        return new RestIngredientService(accessToken);
+
+        // Fallback sin token → para evitar error en el constructor
+        return new RestIngredientService(null);
     }
 }
